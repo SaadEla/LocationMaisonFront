@@ -1,0 +1,41 @@
+<app-header-hote></app-header-hote>
+<!--Message succes connexion-->
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Location Maison-</strong> Connexion Réussie !
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="jumbotron jumbotron-fluid">
+  <div >
+    <h1 class="display-4">Location Maison</h1>
+    <p class="lead">Partagez vos Offres en toute sécurité</p>
+  </div>
+</div>
+    <!--Card-->
+<div class="card" id="bigCard">
+  <div class="card-body" id="bigCardBody">
+    <!--Logement mieux notés-->
+    <h4 class="font-weight-bolder" style="padding-bottom: 3%;">Vos annonces, Saad</h4>
+    <div class="container">
+    <!--Card begin here-->
+      <div  class="card mb-3" style="max-width: 1140px;" *ngFor="let locat of utilisateurLocat">
+        <div class="row no-gutters" style="padding-top: 0%;">
+          <div class="col-md-4">
+            <img src="data:image/jpeg;base64,{{locat.pic}}" class="card-img" >
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{locat.titre}}</h5>
+              <p class="card-text">{{locat.description}}</p>
+              <button type="button" class="btn btn-outline-warning pull-right" style="margin-left: 1%;"  ><a
+                            href="/ModifierLocation/{{locat.id}}" [style.color]="'primary'">Modifier</a></button>
+              <button type="button" class="btn btn-outline-danger pull-right" (click)="Supprimer(locat.id)" >Supprimer</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

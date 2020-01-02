@@ -1,0 +1,81 @@
+<!--HEADER-->
+<div class="header">
+    <!-- nav  kat tcollapsa ni kat fout taille medium-->
+    <nav class="navbar navbar-expand-md navbar-light ">
+        <!-- Le logo -->
+        <a class="navbar-brand" href="\">
+            <img src="assets\img\logo.PNG" width="140" height="30">
+        </a>
+        <!-- bttn en cas de collapse-->
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarTogglerDemo">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Elmts du menu-->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo">
+            <form class="form-inline mr-3">
+                <input class="form-control mr-sm-2" type="search" placeholder="Partout.Logement" name="recherche"
+                    (keyup.enter)="chercher()" [(ngModel)]="recherche">
+            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#AuthModal">Connexion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="dropdown-divider"></div>
+</div>
+<!-- Authentification Modal -->
+<div class="modal fade" id="AuthModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--Formulaire authentification-->
+            <form class="form-inline" #AuthForm="ngForm">
+                <!--MODAL HEADER-->
+                <div class="modal-header mx-auto">
+                    <div class="row">
+                        <h5 class="modal-title col-12 pb-3" id="exampleModalLabel">Êtes vous un</h5>
+                        <!--Radio button userType-->
+                        <div class="col-2 mr-auto form-check">
+                            <input class="form-check-input" type="radio" name="typeCompte" id="exampleRadios1"
+                                value="touriste" checked [(ngModel)]="typeCompte">
+                            <label class="form-check-label" for="exampleRadios1">
+                                Touriste
+                            </label>
+                        </div>
+                        <div class="col-2 ml-auto form-check">
+                            <input class="form-check-input" type="radio" name="typeCompte" id="exampleRadios2"
+                                value="hote" checked [(ngModel)]="typeCompte">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Hote
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body mx-auto">
+                    <!--{{AuthForm.value | json}}-->
+                    <div class="form-group mb-3 col-12">
+                        <input type="email" class="form-control" placeholder="Adresse e-mail" name="email"
+                            [(ngModel)]="email">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><img src="assets\img\mail.svg" /></span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3 col-12">
+                        <input type="password" class="form-control" placeholder="Mot de passe" name="password"
+                            [(ngModel)]="password">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><img src="assets\img\lock.svg" /></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2" data-dismiss="modal" (click)="Connexion()">Connexion</button>
+                    <small [style.margin-left]="'15%'" class="form-text text-muted">Vous n'avez pas de compte?<a
+                            href="/Inscription" [style.color]="'primary'">Inscription</a></small>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Quitter</button>
+            </div>
+        </div>
+    </div>
+</div>

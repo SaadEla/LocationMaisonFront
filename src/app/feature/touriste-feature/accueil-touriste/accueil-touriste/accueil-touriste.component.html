@@ -1,0 +1,203 @@
+<div class="header">
+        <!-- nav  kat tcollapsa ni kat fout taille medium-->
+        <nav class="navbar navbar-expand-md navbar-light ">
+            <!-- Le logo -->
+            <a class="navbar-brand" href="/AccueilTouriste">
+                <img src="assets\img\logo.PNG" width="140" height="30">
+            </a>
+            <!-- bttn en cas de collapse-->
+            <button class="navbar-toggler"  data-toggle="collapse" data-target="#navbarTogglerDemo">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Elmts du menu-->
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo">
+                <form class="form-inline mr-3">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Partout.Logement" id="filter" (keyup.enter)="filter()">
+                </form>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                            <a class="nav-link" href="messageTouriste">Message</a>
+                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Deconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="dropdown-divider" style="margin-bottom: 0%"></div>
+    <!--Les filtres de recherche-->
+
+    </div>
+
+<!--Les filtres de recherche-->
+
+<div classe="btns container">
+    <div class="row" id="btnFiltre" >
+        <button id="lieux" class="btn btn-light col-2 btn-sm " data-toggle="modal" data-target=".emplacement">Emplacement</button>
+        <button id="autre" class="btn btn-light col-2 btn-sm">Type de logement</button>
+        <button id="autre" class="btn btn-light col-2 btn-sm" data-toggle="modal" data-target=".prix">Prix</button>
+        <button id="autre" class="btn btn-light col-2 btn-sm">Nombre de piéce</button>
+    </div>
+    <!--Modal Pour l'Emplacement-->
+    <div class="modal fade emplacement" id="exampleModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Ou souhaitez vous voyager?</label>
+                            <input type="text" class="form-control" 
+                                placeholder="Lieux">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal Pour Prix-->
+    <div class="modal fade prix" id="exampleModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Quelle est votre marge de prix?</label>
+                            <input type="number" class="form-control" id="maxprix"
+                                placeholder="Max">
+                                <input type="number" class="form-control" id="minprix"
+                                placeholder="Min">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="filtreprix()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>      
+    <!--Message succes connexion-->
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Location Maison-</strong> Connexion Réussie !
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+        <!--Card-->
+        <div class="card" id="bigCard">
+            <div class="card-body" id="bigCardBody">
+                <!--Logement mieux notés-->
+                <h4 class="font-weight-bolder-italic">Que cherchez vous Rizk?</h4>
+                <br/>
+                <h4 class="font-weight-bolder">Nos suggestions</h4>
+                <h5 class="font-weight-normal">
+                    Découvrez nos suggestions
+                    <img src="assets\img\rightArrow.svg" />
+                </h5>
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let location of locationRecomm">
+                        <!--Card for a location-->
+                        <div class="card" id="smallCard" routerLink="PageLocation" (click)="onSelect(location)">
+                            <!--Top Card Carouse Image -->
+                            <div class="firstrow">
+                                <!--Images-->
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="data:image/jpeg;base64,{{location.pic}}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Card Body-->
+                            <div class="card-body" id="smallCardBody">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <button id="hoteType" type="button" class="btn btn-outline-dark"
+                                                disabled>{{ location.typeLocation}}</button>
+                                        </div>
+                                        <div id="ratingBloc" class="col-4 ml-auto">
+                                            <img id="star" src="assets\img\star.svg" /><span id="note">{{ location.moyenne}}</span>
+                                        </div>
+
+                                        <h5 class="card-title col-12  " id="titre"><span>{{ location.titre}}</span></h5>
+                                        <p class="desc col-12">{{ location.description}}</p>
+                                        <div class="col-6 ">
+                                            <h5 class="card-title" style="display: inline;">{{ location.prix}}</h5><span
+                                                class="card-text">€/nuit</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="showMore" class="col-12 font-weight-bolder">
+                        <a href="#">Tout afficher ( plus de 200) ></a>
+                    </div>
+                </div>
+                <!--Tous les logements-->
+                <h4 class="font-weight-bolder">Plus de <span>300</span> Logements</h4>
+                <h5 class="font-weight-normal">
+                    Une sélection de logements vérifiés selon des critères de qualité et de design
+                    <img src="assets\img\rightArrow.svg" />
+                </h5>
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let location of location">
+                        <!--Card for a location-->
+                        <!--hiya hadi dyal tmna3 click-->
+                        <a href="#" id="cardLink" class="custom-card" [style.pointer-events]="Session ? 'all' : 'none'">
+                            <div class="card" id="smallCard" >
+                                <!--Top Card Carouse Image -->
+                                <div class="secondrow">
+                                    <!--Images-->
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="data:image/jpeg;base64,{{location.pic}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Card Body-->
+                                <div class="card-body" id="smallCardBody">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <button id="hoteType" type="button" class="btn btn-outline-dark"
+                                                    disabled>{{ location.typeLocation}}</button>
+                                            </div>
+                                            <div id="ratingBloc" class="col-4 ml-auto">
+                                                <img id="star" src="assets\img\star.svg" /><span id="note">{{ location.moyenne}}</span>
+                                            </div>
+
+                                            <h5 class="card-title col-12  ">{{ location.titre}}</h5>
+                                            <p class="desc col-12">{{ location.description}}</p>
+                                            <div class="col-6 ">
+                                                <h5 class="card-title" style="display: inline;">{{ location.prix}}</h5><span
+                                                    class="card-text">€/nuit</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div id="showMore" class="col-12 font-weight-bolder">
+                        <a href="#">Tout afficher ( plus de 200) ></a>
+                    </div>
+                </div>
+            </div>
+    
+    
+            </div>
+        </div>

@@ -1,0 +1,77 @@
+.container{
+    padding-left: 2%;
+    padding-right: 2%;
+    max-width: 100%;
+    padding-top: 1%;
+}
+/*la description a droite de la photo*/
+.img-fluid{
+    width: 100%;
+    height: 75%;
+}
+
+#star{
+    width: 3%;
+    height: 3%;
+}
+#brief{
+    margin-left: 2%;
+}
+/*Le container a gauche*/
+#cardBody{
+    width: 100%;
+}
+#listicone{
+    width: 10%;
+    height: 3%;
+    margin-right: 2%;
+}
+
+#listiconerating{
+    width: 5%;
+    height: 3%;
+    margin-right: 2%;
+}
+/*liste*/
+.two-col-special {
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+
+}
+
+.two-col-special li {
+    display: inline-block;
+    width: 75%;
+    margin: 0;
+    padding: 0;
+    vertical-align: top; /* In case multi-word categories form two lines */
+}
+
+/*liste salat*/
+
+/*Le container a droite
+.container .col-2{
+    
+}*/
+#cardReserver{
+    border-style: solid;
+    border-width: 1px;
+    width: 160%;
+
+}
+.card-title {
+    text-align:center;
+    color: red;
+    font-family: "Times New Roman", Times, sans-serif;
+    font-size: 25px;
+    
+}
+.card-text {
+    text-align:center;
+
+    
+}
+
+
+

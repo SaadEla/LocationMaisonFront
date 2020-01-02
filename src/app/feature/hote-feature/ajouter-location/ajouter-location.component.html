@@ -1,0 +1,158 @@
+<!--Librairies-->
+<!-- Stepper CSS -->
+
+<!--Librairies-->
+
+<app-header-hote></app-header-hote>
+<!--Breadcrumb-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/AccueilHote">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Ajouter Location</li>
+  </ol>
+</nav>
+<!--stepper-->
+<div class="card" id="bigCard">
+  <div class="card-body" id="bigCardBody">
+    <div class="container">
+    <form #AjoutLocForm="ngForm">
+    <!--{{AjoutLocForm.value | json}}-->
+      <!--debut stepper-->
+      <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <!--Premiere page-->
+        <mat-step>
+          <ng-template matStepLabel>Informations sur la location</ng-template><br/>
+          <!--Debut formulaiire-->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="titre">Titre De la location</label>
+              <input type="text" class="form-control" id="titre" placeholder="Titre de l'offre" #titre="ngModel" required [class.is-invalid]="titre.invalid && titre.touched" name="titre" [(ngModel)]="AjoutLoc.titre">
+              <small class="text-danger" [class.d-none]="titre.valid || titre.untouched">Titre Obligatoire</small>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="type">Type de la location</label>
+              <select id="type" class="form-control" name="type" [(ngModel)]="AjoutLoc.type">
+                <option selected value="Professionnelle">Professionnelle</option>
+                <option value="Personnelle">Personnelle</option>
+              </select>
+            </div>
+          </div><br/>
+          <div class="form-group">
+            <label for="adresse">Addresse</label>
+            <input type="text" class="form-control" id="adresse" placeholder="1234 Main St..." #adresse="ngModel" required [class.is-invalid]="adresse.invalid && adresse.touched" name="adresse" [(ngModel)]="AjoutLoc.adresse">
+            <small class="text-danger" [class.d-none]="adresse.valid || adresse.untouched">Adresse Obligatoire</small>
+          </div><br/>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="datedebutoffre">Date debut de l'offre</label>
+              <input  [matDatepicker]="myDatepicker" type="text" class="form-control" id="datedebutoffre">
+              <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #myDatepicker></mat-datepicker>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="datefinoffre">Date Fin de l'offre</label>
+              <input  [matDatepicker]="myDatepicker1" type="text" class="form-control" id="datefinoffre">
+              <mat-datepicker-toggle [for]="myDatepicker1"></mat-datepicker-toggle>
+              <mat-datepicker #myDatepicker1></mat-datepicker>
+            </div>
+          </div><br/>
+          <div class="form-group col-12">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" rows="3" #description="ngModel" required [class.is-invalid]="description.invalid && description.touched" name="description" [(ngModel)]="AjoutLoc.description"></textarea>
+            <small class="text-danger" [class.d-none]="description.valid || description.untouched">Description Obligatoire</small>
+          </div><br/>
+          <div class="col-auto">
+            <label  for="prix">Prix</label>
+            <div class="input-group mb-2">
+              <input type="number" class="form-control" id="prix" placeholder="Veuilez entrer le prix de l'offre" #prix="ngModel" required [class.is-invalid]="prix.invalid && prix.touched" name="prix" [(ngModel)]="AjoutLoc.prix">
+              <div class="input-group-prepend">
+                <div class="input-group-text">€</div>
+              </div>
+              <small class="text-danger" [class.d-none]="prix.valid || prix.untouched">Prix Obligatoire</small>
+            </div>
+          </div><br/>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="nbrpiece">Nombre de pièces</label>
+              <input type="number" class="form-control" id="nbrpiece" placeholder="Veuilez entrer le nombre de Pièces" #nbrpiece="ngModel" required [class.is-invalid]="nbrpiece.invalid && nbrpiece.touched" name="nbrpiece" [(ngModel)]="AjoutLoc.nbrpiece">
+              <small class="text-danger" [class.d-none]="nbrpiece.valid || nbrpiece.untouched">Nombre de pièces Obligatoire</small>
+            </div>
+            <div class="custom-file col-md-6" style="margin-top:2.9%;">
+              <input type="file" class="custom-file-input" id="photo" (change)="onFileChanged($event)">
+              <label class="custom-file-label " for="validatedCustomFile">Veuillez inserer une photo</label>
+            </div>
+          </div><br/>
+          <!--Fin formulaire-->
+          <div>
+            <button type="button" matStepperNext class="btn btn-outline-primary pull-right" >Next</button>
+          </div>
+        </mat-step>
+        <!--Deuxieme page-->
+        <mat-step>
+          <ng-template matStepLabel>Equipements et Accessibilites</ng-template><br/>
+          <!--formulaire step2 debut-->
+          <h2>Choisir les Equipements</h2>
+          <p class="text-muted">
+            Au cas ou les equipements ne figurent pas dans la liste veuillez les completer dans la description de l'offre.
+          </p><br/>
+          <div class="form-group">
+            <label for="equipement">Liste des equipements</label>
+            <select multiple class="form-control" id="equipement" style="padding-bottom: 3%;" name="equipement" [(ngModel)]="equip">
+              <option value="Wi-Fi">Wi-Fi</option>
+              <option value="Chauffage">Chauffage</option>
+              <option value="Cuisine">Cuisine</option>
+              <option value="Sèche-linge">Sèche-linge</option>
+              <option value="Détecteur de fumée">Détecteur de fumée</option>
+              <option value="Machine a laver">Machine a laver</option>
+            </select>
+          </div><br/>
+          <h2>Choisir les Accessibilites</h2>
+          <p class="text-muted">
+            Au cas ou les accessibilites ne figurent pas dans la liste veuillez les completer dans la description de l'offre.
+          </p><br/>
+          <div class="form-group">
+            <label for="accessibilite">Liste des accessibilites</label>
+            <select multiple class="form-control" id="accessibilite" style="padding-bottom: 3%;" name="accessibilite" [(ngModel)]="access">
+              <option value="Parking gratuit sur place">Parking gratuit sur place</option>
+              <option value="Terrain de Foot">Terrain de Foot</option>
+              <option value="Mosquée">Mosquée</option>
+              <option value="Salle de Sport">Salle de Sport</option>
+              <option value="Ascenseur">Ascenseur</option>
+              <option value="Piscine">Piscine</option>
+            </select>
+          </div><br/>
+          <!--formulaire step2 fin-->
+          <div>
+            <button type="button" matStepperNext class="btn btn-outline-primary pull-right ">Next</button>
+            <button type="button" matStepperPrevious class="btn btn-outline-primary pull-left ">Back</button>
+          </div>
+        </mat-step>
+        <!--Troisieme page-->
+        <mat-step>
+          <ng-template matStepLabel>Réglements</ng-template><br/>
+          <!--formulaire step3 debut-->
+          <h2>Choisir le Réglement</h2>
+          <p class="text-muted">
+            Au cas d'une règle manquante veuillez la completer dans la description de l'offre.
+          </p><br/>
+          <div class="form-group">
+            <label for="reglement">Liste des règles</label>
+            <select multiple class="form-control" id="reglement" style="padding-bottom: 3%;" name="reglement" [(ngModel)]="regle">
+              <option value="Non fumeur">Non fumeur</option>
+              <option value="Pas de fête ni de soirée">Pas de fête ni de soirée</option>
+              <option value="Arrivée autonome avec personnel de l'immeuble">Arrivée autonome avec personnel de l'immeuble</option>
+              <option value="Pas d'animaux de compagnie">Pas d'animaux de compagnie</option>
+              <option value="Age limite 25 ans">Age limite 25 ans</option>
+            </select>
+          </div><br/>
+            <!--formulaire step3 fin-->
+          <div>
+            <button type="submit" matStepperNext class="btn btn-outline-success pull-right" (click)="onUpload()">Submit</button>
+            <button type="button" matStepperPrevious class="btn btn-outline-primary pull-left ">Back</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </form>
+    </div>
+  </div>
+</div>

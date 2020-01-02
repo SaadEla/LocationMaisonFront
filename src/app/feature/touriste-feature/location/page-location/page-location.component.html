@@ -1,0 +1,115 @@
+<app-header-touriste></app-header-touriste>
+<!--Breadcrumb-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/AccueilTouriste">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Offre</li>
+  </ol>
+</nav>
+<!--body-->
+<div class="container">
+    <!--Image kbira et description-->
+    <div class="row">
+        <div class="col-6" style="height:30%;">
+            <img src="data:image/jpeg;base64,{{location.pic}}"  class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-6" style="padding-top:1%;">
+            <h4 class="font-weight-bolder">{{location.titre}}</h4>
+            <div class="font-weight-light">
+                <img id="star" src="assets\img\star.svg" /><span>{{location.moyenne}}</span>
+                <span id="brief">·</span>
+                <span id="brief">{{location.typeLocation}}</span>
+                <span id="brief">·</span>
+                <span id="brief"  style="text-decoration: underline;">{{location.emplacement}}</span>
+            </div>
+            <h5 class="font-weight-bold" style="padding-top:2%;">Description</h5>
+            <span class="font-weight-lighter">
+                {{location.description}}
+            </span>
+        </div>
+    </div>
+    <!--BOdy-->
+    <div class="row" style="padding-top:2%;">
+        <!--card body-->
+        <div class="col-9" >
+            <div class="card" id="cardBody">
+                <div class="card-body">
+                <!--Equipements-->
+                <h4 class="font-weight-bold">Équipements</h4><br/>
+                    <div class="shadow p-3 mb-5 bg-white rounded row">
+                        <ul  *ngFor="let equipement of equipements" class="two-col-special col-6"  style="list-style-type:none;">
+                            <li>
+                                <img id="listicone" src="assets\img\liste.png" />{{equipement.description}}
+                            </li>
+                        </ul> 
+                    </div>
+                <div class="dropdown-divider"></div>
+                <!--Réglements-->
+                <h4 class="font-weight-bold" >Réglements</h4><br/>
+                <div style="padding-top:5%;" class="shadow p-3 mb-5 bg-white rounded row">
+                    <ul class="two-col-special col-6" style="list-style-type:none;" *ngFor="let reglement of reglements">
+                        <li>
+                            <img id="listicone" src="assets\img\liste.png" />{{reglement.description}}
+                        </li>
+                    </ul> 
+                </div>
+                <div class="dropdown-divider"></div>
+                <!--Accessibilité-->
+                <h4 class="font-weight-bold" >Accessibilités</h4><br/>
+                <div style="padding-top:5%;" class="shadow p-3 mb-5 bg-white rounded row">   
+                    <ul class="two-col-special col-6" style="list-style-type:none;" *ngFor="let accessibilite of accessibilites">
+                        <li>
+                            <img id="listicone" src="assets\img\liste.png" />{{accessibilite.description}}
+                        </li>
+                    </ul> 
+                </div>
+                <div class="dropdown-divider"></div>
+                <!--Notes-->
+                <img id="star" src="assets\img\star.svg"/><span style="padding-left:1%;font-weight-bold;font-size: 120%;">{{location.moyenne}} ({{countRating}} commentaires)</span><br/><br/>
+                <div style="padding-top:2%;">
+                    <ul style="list-style-type:none;" *ngFor="let rating of ratings">
+                        <li class="shadow-sm p-3 mb-5 bg-white rounded" style="margin-bottom:1%;">
+                            <img id="listiconerating" src="assets\img\profile.png" /><strong>{{rating.nomPers}}</strong>
+                            <p style="margin-left:7%;">{{rating.commentaire}}</p>
+                        </li>
+                    </ul> 
+                </div>
+                <div class="dropdown-divider"></div>
+                <!--Poser question hote-->
+                <div>
+                    <span class="font-weight-bold">Avez-vous des questions à poser à l'hôte ?</span><br/>
+                    <button type="button" (click)="message()"  class="btn btn-outline-secondary" style="margin-top:1%;" >Contacter l'Hôte</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--card for reservation-->
+    <div class="col-2  ">
+      <div class="card" id="cardReserver">
+        <div class="card-body">
+          <h5 class="card-title">Réserver</h5>
+          <div class="card-text">
+            <span>{{location.titre}} · <strong>{{location.prix}}</strong>€/nuit</span><br/>
+            <!--Date arrivée-->
+            <mat-form-field class="example-full-width">
+              <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Date arrivée">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <!--Date Depart-->
+            <mat-form-field class="example-full-width">
+              <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker1" placeholder="Date Depart">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field><br/><br/>
+          </div>
+          <div style="margin-left:25%">
+            <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+            <div id="paypal-checkout-btn"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+/* la forme de la grande card*/
+#bigCard{
+    margin-right: 7.5%;
+    margin-left: 7.5%;
+    margin-top: 2%;
+}
+#bigCardBody{
+    margin-left: 3%;
+    margin-right: 2.5%;
+}
+/*espacer les offres avec les petites car*/
+.row{
+    padding-top: 2%;
+}
+
+/*Aligner les cardes sous la phrase*/
+.container{
+    padding: 0%;
+    margin: 0%;
+    text-decoration: none;
+}
+/*truncate a la fin de 2 ligne*/
+.desc{
+    -webkit-line-clamp: 2;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.jumbotron{
+    background: #F4F5F5;
+    text-align: center;
+}
+.card{
+    margin-bottom: 3%;
+}

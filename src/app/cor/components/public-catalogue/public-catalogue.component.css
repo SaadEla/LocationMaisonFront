@@ -1,0 +1,118 @@
+/* la forme de la grande card*/
+#bigCard{
+    margin-right: 7.5%;
+    margin-left: 7.5%;
+    margin-top: 2%;
+}
+#bigCardBody{
+    margin-left: 3%;
+    margin-right: 2.5%;
+}
+/*espacer les offres avec les petites car*/
+.row{
+    padding-top: 2%;
+}
+/*la petite card*/
+#smallCard{
+    width:100%;
+    height: 90%;
+    margin-top:5% ;
+    border: none;
+    border-radius:10px 0;
+}
+/*centrer le texte de l'offre de logement*/
+#smallCardBody{
+    padding-left: 0%;
+    padding-right: 0%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+
+}
+
+/*Aligner les cardes sous la phrase*/
+.container{
+    padding: 0%;
+    margin: 0%;
+    text-decoration: none;
+}
+#cardLink{
+    text-decoration: none;
+}
+/*button de type de l'hote*/
+#hoteType{
+    padding: 0%;
+    font-size: 10px;
+}
+
+/*taille de l'etoile pr le rating*/
+#star{
+    width: 25%;
+}
+/*placer l'etoile et la note a la fin du bloc*/
+#ratingBloc{
+    text-align: end;
+    text-decoration: none;
+}
+/*truncate a la fin de 2 ligne*/
+.desc{
+    -webkit-line-clamp: 2;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+#showMore{
+    margin-top: 2%;
+    margin-bottom: 7%;
+}
+#showMore a:hover{
+    text-decoration: underline;
+    color: #5B8C86;
+}
+#showMore a{
+    text-decoration: none;
+    color: cadetblue;
+    
+}
+/*pour le radius*/
+.d-block {
+    border-radius: 7px 7px;
+}
+/*hadi por rendre les cards comme des hyperlink*/
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+}
+/*Pour ajuster les buttons filtres*/
+button{
+    border-radius: 25px;
+}
+#lieux{
+    margin-left: 12%;
+    border: 0.4px solid gray;
+}
+#autre{
+    margin-left: 10px;
+    border: 0.4px solid grey;
+}
+#btnFiltre{
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    background-color: white;
+}
+.dropdown-divider{
+    margin-top: 0%;
+}
+
+h5:hover img:first-child {
+    display: inline-block;
+}
+h5 img {
+    display:none;
+}
+.firstrow img{
+    width: 100%;
+}
+.secondrow img{
+    width: 100%;
+}

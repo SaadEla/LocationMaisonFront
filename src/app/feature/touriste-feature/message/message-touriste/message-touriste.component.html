@@ -1,0 +1,62 @@
+<app-header-touriste></app-header-touriste>
+<!--Breadcrumb-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/AccueilTouriste">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Messagerie</li>
+  </ol>
+</nav>
+<!--Message succes connexion-->
+<div class="jumbotron jumbotron-fluid">
+  <div >
+    <h1 class="display-4">Messagerie</h1>
+    <p class="lead">Vous pouvez consulter et envoyer vos message en toute sécurité</p>
+  </div>
+</div>
+    <!--Card-->
+<div class="card" id="bigCard">
+    <div class="card-body" id="bigCardBody">
+        <div class="container">
+        <h2 class="font-weight-light">Composez votre message</h2><br/>
+        <!--Card begin here-->
+            <form #EnvoyerMsg="ngForm">
+            <!--{{EnvoyerMsg.value | json}}-->
+                <div class="row form-group">
+                    <div class="col">
+                    <input type="text" class="form-control" placeholder="Emetteur" id="emetteur" #emetteur="ngModel" required [class.is-invalid]="emetteur.invalid && emetteur.touched" name="emetteur" [(ngModel)]="MessageAEnvoyer.emetteur">
+                    <small class="text-danger" [class.d-none]="emetteur.valid || emetteur.untouched">Veuillez saisir l'Emetteur</small>
+                    </div>
+                    <div class="col">
+                    <input type="text" class="form-control" placeholder="Destinataire" id="destinataire" #destinataire="ngModel" required [class.is-invalid]="destinataire.invalid && destinataire.touched" name="destinataire" [(ngModel)]="MessageAEnvoyer.destinataire">
+                    <small class="text-danger" [class.d-none]="destinataire.valid || destinataire.untouched">Veuillez saisir le Recepteur</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contenu">Contenu</label>
+                    <textarea class="form-control" id="contenu" rows="3" #contenu="ngModel" required [class.is-invalid]="contenu.invalid && contenu.touched" name="contenu" [(ngModel)]="MessageAEnvoyer.contenu"></textarea>
+                    <small class="text-danger" [class.d-none]="contenu.valid || contenu.untouched">Veuillez saisir le Contenu</small>
+                </div><br/>
+                <button type="submit"  class="btn btn-outline-success pull-right" (click)="EnvoyerMessage()">Envoyer</button>
+            </form>
+        </div>
+    </div>
+</div>
+    <!--Card akhra-->
+<div class="card" id="bigCard">
+    <div class="card-body" id="bigCardBody">
+        <div class="container">
+        <h2 class="font-weight-light">Vos messages</h2><br/>
+        <!--Card akhra begin here-->
+        <div class="card"  *ngFor="let msg of MessageTouriste">
+            <button type="button" class="close" data-toggle="tooltip" data-placement="top" title="Supprimer" (click)="SupprimerMsg(msg.id)">
+                <span aria-hidden="true" style="margin-left:98%;">&times;</span>
+            </button>
+            <div class="card-body"  style="padding-top:0%;">
+                <div class="font-weight-bold">{{msg.emetteur}}:</div>
+                <div class="font-weight-lighter">{{msg.contenu}}</div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+

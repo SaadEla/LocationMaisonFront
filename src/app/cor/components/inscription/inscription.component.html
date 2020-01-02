@@ -1,0 +1,50 @@
+    <!--Card-->
+  <br/>
+  <div class="alert alert-success" role="alert" *ngIf="succesInscr">
+  Inscription réussite<span><a href="/">—Retourner a l'acueil!</a></span>
+</div>
+    <div class="card">
+        <div class="card-body">
+            <!--Logement mieux notés-->
+            <div class="container">
+                <h4 class="font-weight-bolder">Inscription</h4>
+                <div class="row justify-content-center">
+                    <form #InscForm="ngForm">
+                    <!--{{InscForm.value | json}}-->
+                        <div class="form-group">
+                            <label for="nom">Nom</label>
+                            <input  #name="ngModel" required [class.is-invalid]="name.invalid && name.touched" type="text" class="form-control" id="nom"  placeholder="Entre votre nom" name="nom" [(ngModel)]="formInscr.nom">
+                            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Nom Obligatoire</small>
+                          </div>
+                          <div class="form-group">
+                              <label for="prenom">Prenom</label>
+                              <input #pren="ngModel" required [class.is-invalid]="pren.invalid && pren.touched" type="text" class="form-control" id="prenom" placeholder="Enter votre prenom" name="prenom" [(ngModel)]="formInscr.prenom">
+                              <small class="text-danger" [class.d-none]="pren.valid || pren.untouched">Prenom Obligatoire</small>
+                            </div>
+                        <div class="form-group">
+                          <label for="email">Email address</label>
+                          <input #emai="ngModel" required [class.is-invalid]="emai.invalid && emai.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrer votre email" name="email" [(ngModel)]="formInscr.email">
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                          <small class="text-danger" [class.d-none]="emai.valid || emai.untouched">Entrez un email valide</small>
+                        </div>
+                        <div class="form-group">
+
+                          <input  type="password" class="form-control" id="password" placeholder="Password" name="password" [(ngModel)]="formInscr.password">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="typeCompte">Etes vous un</label>
+                            <select class="form-control" id="typeCompte" name="typeCompte" [(ngModel)]="formInscr.typeCompte">
+                              <option value="hote">hote</option>
+                              <option value="touriste">touriste</option>
+                              </select>
+                          </div>
+                        <br/>
+                        <button [disabled]="InscForm.form.invalid" type="submit" class="btn btn-primary" (click)="Inscription()">Inscription</button>
+                      </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
