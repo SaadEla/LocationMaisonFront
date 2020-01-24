@@ -60,8 +60,8 @@ export class PageLocationComponent implements OnInit {
   paypalConfig = {
     env: 'sandbox',
     client: {
-      sandbox: 'AdYQSTQtXQ5ybplR78L7gMQ_LrfRSUTRMq-o1aVCtTwMGdG4wALoijjTXhKrmScVQawjnCbIIgduSW_h',
-      production: 'EI6UENmaBvdaGFl1d2fDczmTwmEG_FC-kGI83gm6G98JrAZjkAYeT_-oYZ5iffBQHMkOlxrsQ6D9SGbp'
+      sandbox: '#sandbox_key',
+      production: '#production_key'
     },
     commit: true,
     payment: (data, actions) => {
